@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.paint-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60vw;
+    height: 94vh;
+}
+
+.paint-content {
+    flex: 8;
+    border: green 1px solid;
+    display: flex;
+}
+
+.color-pallet {
+    flex: 2;
+    border: blueviolet 1px solid;
+}
+
+.side-menu {
+    flex: 1;
+    border: blue 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.canvas-body {
+    flex: 4;
+    height: 500px;
+    width: 500px;
+    border: red 1px solid;
+}
