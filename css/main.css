@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
 }
+
 body {
     display: flex;
     justify-content: center;
@@ -11,27 +12,35 @@ body {
     flex-direction: column;
     justify-content: center;
     width: 60vw;
-    height: 94vh;
+    height: 96vh;
+    /* border-radius: 20px; */
 }
 
 .paint-content {
     flex: 8;
-    border: green 1px solid;
+    /* border: green 1px solid; */
     display: flex;
+    /* flex-direction: column-reverse; */
 }
 
 .color-pallet {
     flex: 2;
-    border: blueviolet 1px solid;
+    /* border: blueviolet 1px solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
 }
 
 .side-menu {
     flex: 1;
-    border: blue 1px solid;
+    /* border: blue 1px solid; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    background-color: gray;
+    
 }
 
 .canvas-body {
@@ -39,4 +48,40 @@ body {
     height: 500px;
     width: 500px;
     border: red 1px solid;
+}
+
+.color {
+    height: 50px;
+    flex-basis: 50px;
+    border: lightgray 1px solid;
+}
+
+.appliance {
+    flex-basis: 50px;
+    width: 50px;
+}
+
+.appliance img {
+    height: 90%;
+    width: 90%;
+}
+
+.color#black {
+    background-color: black;
+}
+
+.color#red {
+    background-color: red;
+}
+
+.color#green {
+    background-color: green;
+}
+
+.color#blue {
+    background-color: blue;
+}
+
+.color#yellow {
+    background-color: yellow;
 }
