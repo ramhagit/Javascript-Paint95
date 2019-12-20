@@ -9,56 +9,55 @@ body {
 
 .paint-body {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    width: 60vw;
-    height: 96vh;
-    /* border-radius: 20px; */
 }
 
 .paint-content {
-    flex: 8;
-    /* border: green 1px solid; */
+    flex-direction: column-reverse;
     display: flex;
-    /* flex-direction: column-reverse; */
 }
 
-.color-pallet {
-    flex: 2;
-    /* border: blueviolet 1px solid; */
+.colors-pallet {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     background-color: gray;
 }
 
-.side-menu {
-    flex: 1;
-    /* border: blue 1px solid; */
+.appliances-menu {
     display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
     background-color: gray;
     
 }
 
 .canvas-body {
-    flex: 4;
     height: 500px;
     width: 500px;
-    border: red 1px solid;
+    border: gray 5px solid;
+    position: relative;
+    box-sizing: content-box;
 }
 
 .color {
-    height: 50px;
+    width: 50px;
+    margin: 10px;
     flex-basis: 50px;
     border: lightgray 1px solid;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .appliance {
     flex-basis: 50px;
     width: 50px;
+    margin: 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .appliance img {
@@ -66,22 +65,16 @@ body {
     width: 90%;
 }
 
-.color#black {
-    background-color: black;
+.pixel {
+    position: absolute;
+    height: 2px;
+    width: 2px;
 }
 
-.color#red {
-    background-color: red;
+.canvas-body.pencil {
+    cursor: url(../images/PencilGray.cur), auto;
 }
 
-.color#green {
-    background-color: green;
-}
-
-.color#blue {
-    background-color: blue;
-}
-
-.color#yellow {
-    background-color: yellow;
+.canvas-body.eraser {
+    cursor: url(../images/eraser.cur), auto;
 }
