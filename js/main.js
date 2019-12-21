@@ -4,12 +4,10 @@ Paint.colors = ["black", "red", "blue", "green", "yellow", "magenta", "greenyell
 Paint.canvasBody = $('.canvas-body');
 Paint.selectedColor = "black";
 Paint.selectedShape = '';
-// Paint.clicking = false;
 
 Paint.start = () => {
     Paint.bindOptions();
     Paint.createColorsPallet();
-    // Paint.userClicking();
 };
 
 Paint.bindOptions = () => {
@@ -38,17 +36,6 @@ Paint.createColorsPallet = () => {
         Paint.selectedColor = $(event.target).attr('id');
     })
 };
-
-// Paint.userClicking = () => {
-
-//     Paint.canvasBody.live("mousedown", function () {
-//         Paint.clicking = true;
-//     });
-
-//     $(document).live("mouseup", function () {
-//         Paint.clicking = false;
-//     });
-// }
 
 Paint.draw = (selectedShape, selectedColor, top, left) => {
     $('<span/>')
@@ -79,9 +66,7 @@ Paint.actionCalled = () => {
             else {
                 Paint.erase();
             }
-            console.log(Paint.canvasBody.attr('class').split(' ').pop());
         }
-        else return;
     });
 };
 
@@ -110,4 +95,3 @@ Paint.clearCanvas = () => {
 };
 
 Paint.start();
-// console.log(Paint.clicking);
