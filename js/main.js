@@ -11,10 +11,12 @@ Paint.start = () => {
 
 Paint.bindOptions = () => {
     const applianceBtnPencil = $('#pencil');
+    const applianceBtnBrush = $('#brush');
     const applianceBtnErase = $('#eraser');
     const applianceBtnClearCanvas = $('#clear-canvas');
     
     applianceBtnPencil.click(Paint.drawPencil);
+    applianceBtnBrush.click(Paint.drawBrush);
     applianceBtnErase.click(Paint.erase);
     applianceBtnClearCanvas.click(Paint.clearCanvas);
 };
@@ -56,6 +58,17 @@ Paint.drawPencil = () => {
     });
 };
 
+Paint.drawBrush = () => {
+    Paint.canvasBody.attr('class', 'canvas-body brush');
+    Paint.canvasBody.mousemove((e) => {
+        if (e.buttons == 1) {
+            const top = e.pageY - e.target.offsetTop;
+            const left = e.pageX - e.target.offsetLeft;
+            Paint.draw('dot', Paint.selectedColor, top, left);
+        };
+    });
+};
+
 Paint.clearCanvas = () => {
     Paint.canvasBody
         .attr('class', 'canvas-body')
@@ -64,7 +77,7 @@ Paint.clearCanvas = () => {
 };
 
 Paint.erase = () => {
-    Paint.canvasBody.attr('class', 'canvas-body pencil');
+    Paint.canvasBody.attr('class', 'canvas-body eraser');
 
 };
 
