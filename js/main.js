@@ -3,13 +3,13 @@ const Paint = {};
 Paint.colors = ["black", "red", "blue", "green", "yellow", "magenta", "greenyellow", "lightblue"];
 Paint.canvasBody = $('.canvas-body');
 Paint.selectedColor = "black";
-Paint.selectedShape = "";
-Paint.clicking = false;
+Paint.selectedShape = '';
+// Paint.clicking = false;
 
 Paint.start = () => {
     Paint.bindOptions();
     Paint.createColorsPallet();
-    Paint.userClicking();
+    // Paint.userClicking();
 };
 
 Paint.bindOptions = () => {
@@ -20,7 +20,7 @@ Paint.bindOptions = () => {
 
     applianceBtnPencil.click(Paint.drawPencil);
     applianceBtnBrush.click(Paint.drawBrush);
-    applianceBtnErase.click(Paint.erase);
+    applianceBtnErase.click(Paint.useEraser);
     applianceBtnClearCanvas.click(Paint.clearCanvas);
 };
 
@@ -39,16 +39,16 @@ Paint.createColorsPallet = () => {
     })
 };
 
-Paint.userClicking = () => {
+// Paint.userClicking = () => {
 
-    Paint.canvasBody.live("mousedown", function () {
-        Paint.clicking = true;
-    });
+//     Paint.canvasBody.live("mousedown", function () {
+//         Paint.clicking = true;
+//     });
 
-    $(document).live("mouseup", function () {
-        Paint.clicking = false;
-    });
-}
+//     $(document).live("mouseup", function () {
+//         Paint.clicking = false;
+//     });
+// }
 
 Paint.draw = (selectedShape, selectedColor, top, left) => {
     $('<span/>')
@@ -61,12 +61,25 @@ Paint.draw = (selectedShape, selectedColor, top, left) => {
         .appendTo(Paint.canvasBody);
 };
 
-Paint.wrapDraw = () => {
+Paint.erase = () => {
+    Paint.canvasBody.children().hover((event) => {
+        $(event.target).remove();
+    });
+};
+
+Paint.actionCalled = () => {
     Paint.canvasBody.mousemove((e) => {
         if (e.buttons == 1) {
-            const top = e.pageY - e.target.offsetTop;
-            const left = e.pageX - e.target.offsetLeft;
-            Paint.draw(Paint.selectedShape, Paint.selectedColor, top, left);
+            const appliance = Paint.canvasBody.attr('class').split(' ').pop();
+            if (appliance != 'eraser') {
+                const top = e.pageY - e.target.offsetTop;
+                const left = e.pageX - e.target.offsetLeft;
+                Paint.draw(Paint.selectedShape, Paint.selectedColor, top, left);
+            }
+            else {
+                Paint.erase();
+            }
+            console.log(Paint.canvasBody.attr('class').split(' ').pop());
         }
         else return;
     });
@@ -75,34 +88,26 @@ Paint.wrapDraw = () => {
 Paint.drawPencil = () => {
     Paint.canvasBody.attr('class', 'canvas-body pencil');
     Paint.selectedShape = 'pixel';
-    Paint.wrapDraw();
+    Paint.actionCalled();
 };
 
 Paint.drawBrush = () => {
     Paint.canvasBody.attr('class', 'canvas-body brush');
     Paint.selectedShape = 'dot';
-    Paint.wrapDraw();
+    Paint.actionCalled();
+};
+
+Paint.useEraser = () => {
+    Paint.canvasBody.attr('class', 'canvas-body eraser');
+    Paint.selectedShape = '';
+    Paint.actionCalled();
 };
 
 Paint.clearCanvas = () => {
     Paint.canvasBody
         .attr('class', 'canvas-body')
         .empty();
-
 };
-
-Paint.erase = () => {
-    Paint.canvasBody.attr('class', 'canvas-body eraser');
-    Paint.canvasBody.mousemove((e) => {
-        if (e.buttons == 1) {
-            Paint.canvasBody.children().hover((event) => {
-                Paint.canvasBody.remove($(event.target));
-            })
-        };
-    });
-
-};
-
 
 Paint.start();
-
+// console.log(Paint.clicking);
